@@ -22,6 +22,8 @@ public class DanielsVisual extends MyVisual {
     @Override
     public void render() {
         if(isSingleMode()) window.background(color, 50, 50); 
+        window.stroke(255);
+        window.strokeWeight(4*window.getIntensity());
         window.line(50, y, 750, y);
     }
 

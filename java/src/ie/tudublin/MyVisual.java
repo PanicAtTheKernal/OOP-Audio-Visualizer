@@ -2,7 +2,7 @@ package ie.tudublin;
 
 public abstract class MyVisual {
     protected MainWindow window;
-    private boolean toggleRender;
+    private boolean toggleRender = true;
     private boolean singleMode = true;
     private String name;
 

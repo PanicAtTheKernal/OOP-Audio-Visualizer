@@ -12,7 +12,7 @@ public class MainWindow extends Visual {
     private int intensity = 1;
     private int maxIntensity = 10;
     private boolean singleMode = true;
-
+    private int defaultColor = 0;
     
 
     public void settings()
@@ -36,7 +36,7 @@ public class MainWindow extends Visual {
         loadAudio("rasputin.mp3");
         getAudioPlayer().play();
 
-        background(255);
+        background(defaultColor);
     }
 
     public void keyPressed()
@@ -128,6 +128,7 @@ public class MainWindow extends Visual {
         }
 
         fill(0);
+        noStroke();
         rect(0, height - heigthBox, width, heigthBox);
         
         fill(255);
@@ -153,7 +154,7 @@ public class MainWindow extends Visual {
             }
             else 
             {
-                background(255);
+                background(defaultColor);
                 for(MyVisual v:ourVisuals)
                 {
                     if(v.shouldRender())
