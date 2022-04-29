@@ -87,4 +87,5 @@ public class CubeVisual extends Visual
         angle += 0.01f;
     }
     float angle = 0;
+
 } 
