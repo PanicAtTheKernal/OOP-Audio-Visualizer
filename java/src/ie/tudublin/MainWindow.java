@@ -46,18 +46,9 @@ public class MainWindow extends Visual {
             // This is done so instead of pressing 0 and 1 you can press 1 and 2 instead 
             char keyOffest = (char)((int)key - 1);
             int newIndex = asciiToInt(keyOffest);
-            if(newIndex <= ourVisuals.size())
+            if(newIndex < ourVisuals.size())
             {
-                // This prevents the all case from triggering in singleMode. Which can cause problems.
-                if (singleMode && newIndex < ourVisuals.size())
-                {
-                    currentVisual = newIndex;
-                }
-                else if (!singleMode && newIndex <= ourVisuals.size())
-                {
-                    currentVisual = newIndex;
-                }
-                    
+                currentVisual = newIndex;                    
             }
 
             if (currentVisual < ourVisuals.size())
@@ -68,6 +59,11 @@ public class MainWindow extends Visual {
             }
         }
         
+        if (key == '0' && !singleMode)
+        {
+            currentVisual = ourVisuals.size();
+        }
+
         if (key == 'b')
         {
             toggleSingleMode();
