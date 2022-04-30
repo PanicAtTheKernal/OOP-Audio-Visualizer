@@ -1,6 +1,7 @@
 package ie.tudublin;
 
 import daniel.*;
+import c123456.*;
 
 import java.util.ArrayList;
 
@@ -27,10 +28,10 @@ public class MainWindow extends Visual {
         noCursor();
         
         //Adding all our visual to an arrayList
-        ourVisuals.add(new DanielsVisual(this, "Line", 200));
-        ourVisuals.add(new DanielsVisual(this, "Cheese" ,400));
-        ourVisuals.add(new DanielsVisual(this, "2",600));
-
+        ourVisuals.add(new BryansVisual(this, "Line", 200));
+        ourVisuals.add(new BryansVisual(this, "Cheese" ,400));
+        ourVisuals.add(new BryansVisual(this, "2",600));
+        ourVisuals.add(new DanielsVisual(this, "Daniel"));
 
         startMinim();
         loadAudio("rasputin.mp3");
@@ -141,6 +142,12 @@ public class MainWindow extends Visual {
 
     public void draw()
     {
+        if(getBeat().isKick()) print("Kick ");
+        if(getBeat().isSnare()) print("Snare ");
+        if(getBeat().isHat()) print("Hat ");
+        if(getBeat().isKick() || getBeat().isSnare() || getBeat().isHat())print("\n");
+        
+
         if(currentVisual < ourVisuals.size())
         {       
             if (singleMode) 
