@@ -6,6 +6,7 @@ public class MyVisual extends Visual
 {    
     WaveForm wf;
     AudioBandsVisual abv;
+    Wave wav;
 
     public void settings()
     {
@@ -23,7 +24,7 @@ public class MyVisual extends Visual
         startMinim();
                 
         // Call loadAudio to load an audio file to process 
-        loadAudio("heroplanet.mp3"); 
+        loadAudio("rasputin.mp3"); 
 
         //loadAudio("ark.mp3"); 
 
@@ -34,6 +35,7 @@ public class MyVisual extends Visual
         
         wf = new WaveForm(this);
         abv = new AudioBandsVisual(this);
+        wav = new Wave(this);
     }
 
     public void keyPressed()
@@ -62,7 +64,8 @@ public class MyVisual extends Visual
 
         // Call this is you want to get the average amplitude
         calculateAverageAmplitude();        
-        wf.render();
-        abv.render();
+        //wf.render();
+        wav.render();
+        //abv.render();
     }
 }
