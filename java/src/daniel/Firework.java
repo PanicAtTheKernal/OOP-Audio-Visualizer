@@ -11,6 +11,7 @@ public class Firework {
     private FireworkParticle[] particles;
     private boolean explode;
     private PVector intialPosition;
+    private FireworkParticle fp;
 
     public Firework(MainWindow window, PVector intialPosition)
     {   
@@ -18,13 +19,15 @@ public class Firework {
         this.window = window;
         this.intialPosition = intialPosition;
         this.particles = new FireworkParticle[particleCount];
+        this.fp = new FireworkParticle(window, 400, 50, 100, intialPosition);
     }
 
     public void render()
     {
-        if(!explode)
-            window.fill(255);
-            window.ellipse(intialPosition.x, intialPosition.y, 5, 5);
+        fp.render();
+        // if(!explode)
+        //     window.fill(255);
+        //     window.ellipse(intialPosition.x, intialPosition.y, 5, 5);
     }
 
     public void startExplodsion()

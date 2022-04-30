@@ -15,17 +15,21 @@ public class DanielsVisual extends MyVisual {
 
     private ArrayList<Firework> fireworks = new ArrayList<Firework>();
 
+    private Firework firework;
+
     public DanielsVisual(MainWindow window, String name) {
         super(window, name);
+        PVector cords = new PVector(window.width/2, window.height/2);
+        firework = new Firework(window, cords);
     }
 
     @Override
     public void update() {
-        if(window.getBeat().isKick() && fireworks.size() < noFireworks)
-        {
-            PVector randCords = new PVector(window.random(maxSize, window.width-maxSize), window.random(maxSize, window.height-maxSize));
-            fireworks.add(new Firework(window, randCords));
-        }
+        // if(window.getBeat().isKick() && fireworks.size() < noFireworks)
+        // {
+        //     PVector randCords = new PVector(window.random(maxSize, window.width-maxSize), window.random(maxSize, window.height-maxSize));
+        //     fireworks.add(new Firework(window, randCords));
+        // }
         
     }
 
@@ -33,15 +37,18 @@ public class DanielsVisual extends MyVisual {
     public void render() {
         if(isSingleMode()) window.background(0); 
 
-        for(Firework f: fireworks)
-        {
-            f.render();
-        }
 
-        if(window.getBeat().isHat())
-        {
-            explodeFirework();
-        }
+        firework.render();
+        firework.startExplodsion();
+        // for(Firework f: fireworks)
+        // {
+        //     f.render();
+        // }
+
+        // if(window.getBeat().isHat())
+        // {
+        //     explodeFirework();
+        // }
     }
 
     @Override
