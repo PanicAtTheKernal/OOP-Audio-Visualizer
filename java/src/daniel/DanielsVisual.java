@@ -1,5 +1,6 @@
 package daniel;
 
+import java.net.http.HttpResponse.PushPromiseHandler;
 import java.util.ArrayList;
 
 import ie.tudublin.MainWindow;
@@ -16,10 +17,11 @@ public class DanielsVisual extends MyVisual {
     private ArrayList<Firework> fireworks = new ArrayList<Firework>();
 
     private Firework firework;
+    private PVector cords;
 
     public DanielsVisual(MainWindow window, String name) {
         super(window, name);
-        PVector cords = new PVector(window.width/2, window.height/2);
+        cords = new PVector(window.width/2, window.height/2);
         firework = new Firework(window, cords);
     }
 
@@ -37,9 +39,11 @@ public class DanielsVisual extends MyVisual {
     public void render() {
         if(isSingleMode()) window.background(0); 
 
-
+        window.pushMatrix();
+        window.translate(cords.x, cords.y);
         firework.render();
         firework.startExplodsion();
+        window.popMatrix();
         // for(Firework f: fireworks)
         // {
         //     f.render();
