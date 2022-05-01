@@ -19,7 +19,7 @@ public class Firework {
         this.window = window;
         this.intialPosition = intialPosition;
         this.particles = new FireworkParticle[particleCount];
-        this.fp = new FireworkParticle(window, 400, 0.5f, 100, new PVector(-100,0));
+        this.fp = new FireworkParticle(window, 50, 0.5f, new PVector(0,0));
     }
 
     public void render()

@@ -1,24 +1,24 @@
 package daniel;
 
 import ie.tudublin.MainWindow;
+import processing.core.PApplet;
 import processing.core.PVector;
 
 public class FireworkParticle {
     private float speed;
     private float radius;
-    private float MaxRadius;
+    private float secondRadius;
+    private float maxRadius;
     private PVector targeCords;
-    private PVector currentCords;
-    private PVector secondCords;
     private MainWindow window;
     
-    public FireworkParticle(MainWindow window, int MaxRadius, float speed, PVector targeCords) {
+    public FireworkParticle(MainWindow window, int maxRadius, float speed, PVector targeCords) {
         this.window = window;
         this.speed = speed;
-        this.radius = radius;
+        this.maxRadius = maxRadius;
         this.targeCords = targeCords;
-        this.currentCords = new PVector(0,0);
-        this.secondCords = new PVector(0,0);
+        this.radius = 0;
+        this.secondRadius = maxRadius;
     }
 
     public void render() 
@@ -26,34 +26,18 @@ public class FireworkParticle {
         window.fill(255);
         window.stroke(255);
         // have to compare it as greater than because float values are not arccurate
-        if(PVector.dist(currentCords, targeCords) > 1f)
+        if((maxRadius - radius) > 1f)
         {
-            currentCords.lerp(targeCords, speed);
-            window.ellipse(a, b, c, d);
+            radius = PApplet.lerp(radius, maxRadius, speed);
+            window.ellipse(targeCords.x, targeCords.y, radius, radius);
         }
         else
         {
-            secondCords.lerp(targeCords, speed);
-            window.line(targeCords.x, targeCords.y, secondCords.x, secondCords.y);
+            secondRadius = PApplet.lerp(secondRadius, 0, speed);
+            if (secondRadius > 1f)
+                window.ellipse(targeCords.x, targeCords.y, secondRadius, secondRadius);
             
         }
-
-
-        // if(lifetime > 0)
-        // {
-        //     int radiusLifetime = (int)PApplet.map(lifetime, 0, intialLifetime, 0, radius);
-        //     window.ellipse(currentCords.x, currentCords.y, radiusLifetime, radiusLifetime);
-        //     lifetime = lifetime - decay;
-        //     // cords.y -= 1;
-        // }
-
     }
 
-    public int getLifetime() {
-        return lifetime;
-    }
-
-    public void setLifetime(int lifetime) {
-        this.lifetime = lifetime;
-    }
 }
