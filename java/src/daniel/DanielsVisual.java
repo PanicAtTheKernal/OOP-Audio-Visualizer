@@ -11,7 +11,7 @@ import processing.core.PVector;
 public class DanielsVisual extends MyVisual {
     private int y;
     private float color = window.random(0,255);
-    private int noFireworks = 10;
+    private int noFireworks = 100;
     private int maxSize = 40;
 
     private ArrayList<Firework> fireworks = new ArrayList<Firework>();
@@ -21,17 +21,16 @@ public class DanielsVisual extends MyVisual {
 
     public DanielsVisual(MainWindow window, String name) {
         super(window, name);
-        cords = new PVector(window.width/2, window.height/2);
-        firework = new Firework(window, cords);
+        firework = new Firework(window);
     }
 
     @Override
     public void update() {
-        // if(window.getBeat().isKick() && fireworks.size() < noFireworks)
-        // {
-        //     PVector randCords = new PVector(window.random(maxSize, window.width-maxSize), window.random(maxSize, window.height-maxSize));
-        //     fireworks.add(new Firework(window, randCords));
-        // }
+        if(window.getBeat().isKick() && fireworks.size() < noFireworks)
+        {
+            cords = new PVector(window.random(maxSize, window.width-maxSize), window.random(maxSize, window.height-maxSize));
+            fireworks.add(new Firework(window));
+        }
         
     }
 
@@ -39,20 +38,19 @@ public class DanielsVisual extends MyVisual {
     public void render() {
         if(isSingleMode()) window.background(0); 
 
-        window.pushMatrix();
-        window.translate(cords.x, cords.y);
-        firework.render();
-        firework.startExplodsion();
-        window.popMatrix();
-        // for(Firework f: fireworks)
-        // {
-        //     f.render();
-        // }
+        for(Firework f: fireworks)
+        {
+            window.pushMatrix();
+            window.translate(cords.x, cords.y);
+            window.scale(0.3f);
+            f.render();
+            window.popMatrix();
+        }
 
-        // if(window.getBeat().isHat())
-        // {
-        //     explodeFirework();
-        // }
+        if(window.getBeat().isHat())
+        {
+            explodeFirework();
+        }
     }
 
     @Override
@@ -63,10 +61,11 @@ public class DanielsVisual extends MyVisual {
     
     public void explodeFirework()
     {
-        if(0 < fireworks.size())
+        if(fireworks.size() > 0)
         {
-            Firework firework = fireworks.remove(0);
-            firework.startExplodsion();
+            fireworks.get(0).startExplodsion();
+            if(fireworks.get(0).isExploded())
+                fireworks.remove(0);
         }
     }
 }

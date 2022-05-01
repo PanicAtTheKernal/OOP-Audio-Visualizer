@@ -12,7 +12,7 @@ public class FireworkParticle {
     private PVector targeCords;
     private MainWindow window;
     
-    public FireworkParticle(MainWindow window, int maxRadius, float speed, PVector targeCords) {
+    public FireworkParticle(MainWindow window, float maxRadius, float speed, PVector targeCords) {
         this.window = window;
         this.speed = speed;
         this.maxRadius = maxRadius;
@@ -23,8 +23,6 @@ public class FireworkParticle {
 
     public void render() 
     {
-        window.fill(255);
-        window.stroke(255);
         // have to compare it as greater than because float values are not arccurate
         if((maxRadius - radius) > 1f)
         {

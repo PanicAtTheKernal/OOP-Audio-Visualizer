@@ -21,8 +21,6 @@ public class FireworkArm {
 
     public void render() 
     {
-        window.fill(255);
-        window.stroke(255);
         // have to compare it as greater than because float values are not arccurate
         if(PVector.dist(currentCords, targeCords) > 1f)
         {
