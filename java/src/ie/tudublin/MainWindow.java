@@ -79,7 +79,6 @@ public class MainWindow extends Visual {
         if (key == 'n' && intensity < maxIntensity)
             intensity++;
 
-        
     }
 
     public int asciiToInt(char key)
@@ -142,11 +141,15 @@ public class MainWindow extends Visual {
 
     public void draw()
     {
-        // if(getBeat().isKick()) print("Kick ");
-        // if(getBeat().isSnare()) print("Snare ");
-        // if(getBeat().isHat()) print("Hat ");
-        // if(getBeat().isKick() || getBeat().isSnare() || getBeat().isHat())print("\n");
-        
+        try
+        {
+            // Call this if you want to use FFT data
+            calculateFFT(); 
+        }
+        catch(VisualException e)
+        {
+            e.printStackTrace();
+        }
 
         if(currentVisual < ourVisuals.size())
         {       

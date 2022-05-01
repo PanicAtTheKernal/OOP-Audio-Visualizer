@@ -178,8 +178,4 @@ public abstract class Visual extends PApplet
 	public BeatDetect getBeat() {
 		return beat;
 	}
-
-	public void setBeat(BeatDetect beat) {
-		this.beat = beat;
-	}
 }

@@ -1,6 +1,5 @@
 package daniel;
 
-import java.net.http.HttpResponse.PushPromiseHandler;
 import java.util.ArrayList;
 
 import ie.tudublin.MainWindow;
@@ -25,10 +24,13 @@ public class DanielsVisual extends MyVisual {
 
     @Override
     public void update() {
+        float[] bands = window.getSmoothedBands();
+
         if(window.getBeat().isHat() && fireworks.size() < noFireworks)
         {
             cords = new PVector(window.random(maxSize, window.width-maxSize), window.random(maxSize, window.height-maxSize));
-            fireworks.add(new Firework(window, 0.5f,cords));
+            int colour = (int)PApplet.map(window.random(0, bands.length-1), 0, bands.length-1, 0, 255);
+            fireworks.add(new Firework(window, 0.5f, colour,cords));
         }
         
         scale = window.getIntensity() * 0.1f;
@@ -42,6 +44,7 @@ public class DanielsVisual extends MyVisual {
     @Override
     public void render() {
         if(isSingleMode()) window.background(0); 
+
 
         for(Firework f: fireworks)
         {

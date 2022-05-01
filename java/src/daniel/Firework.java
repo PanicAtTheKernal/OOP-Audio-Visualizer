@@ -16,9 +16,10 @@ public class Firework {
     private float maxRadius = 10f;
     private float speed = 0.1f;
     private boolean exploded = false;
+    private int colour = 255;
     private int time = 15;
 
-    public Firework(MainWindow window, float speed, PVector location)
+    public Firework(MainWindow window, float speed, int colour,PVector location)
     {   
         this.explode = false;
         this.window = window;
@@ -26,6 +27,7 @@ public class Firework {
         this.particles = new ArrayList<FireworkParticle>();
         this.arms = new ArrayList<FireworkArm>();
         this.speed = speed;
+        this.colour = colour;
         setup();
     }
 
@@ -58,12 +60,11 @@ public class Firework {
 
     public void render()
     {
-        window.fill(255);
-        window.stroke(255);
+        window.fill(colour, 255, 255);
+        window.stroke(colour, 255, 255);
 
         if(!explode)
         {
-            window.fill(255);
             window.ellipse(0, 0, 5, 5);
         }
         else
@@ -100,6 +101,14 @@ public class Firework {
 
     public boolean isExploded() {
         return exploded;
+    }
+
+    public int getColour() {
+        return colour;
+    }
+
+    public void setColour(int colour) {
+        this.colour = colour;
     }
 
     public PVector getLocation() {
