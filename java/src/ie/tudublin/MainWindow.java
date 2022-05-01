@@ -31,7 +31,7 @@ public class MainWindow extends Visual {
         ourVisuals.add(new BryansVisual(this, "Line", 200));
         ourVisuals.add(new BryansVisual(this, "Cheese" ,400));
         ourVisuals.add(new BryansVisual(this, "2",600));
-        ourVisuals.add(new DanielsVisual(this, "Daniel"));
+        ourVisuals.add(new DanielsVisual(this, "Fireworks"));
 
         startMinim();
         loadAudio("rasputin.mp3");
@@ -142,10 +142,10 @@ public class MainWindow extends Visual {
 
     public void draw()
     {
-        if(getBeat().isKick()) print("Kick ");
-        if(getBeat().isSnare()) print("Snare ");
-        if(getBeat().isHat()) print("Hat ");
-        if(getBeat().isKick() || getBeat().isSnare() || getBeat().isHat())print("\n");
+        // if(getBeat().isKick()) print("Kick ");
+        // if(getBeat().isSnare()) print("Snare ");
+        // if(getBeat().isHat()) print("Hat ");
+        // if(getBeat().isKick() || getBeat().isSnare() || getBeat().isHat())print("\n");
         
 
         if(currentVisual < ourVisuals.size())
@@ -170,6 +170,7 @@ public class MainWindow extends Visual {
         }
         else if(currentVisual == ourVisuals.size())
         {
+            background(defaultColor);
             for(MyVisual v:ourVisuals)
             {
                 v.update();
