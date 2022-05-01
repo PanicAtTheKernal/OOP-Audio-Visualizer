@@ -1,6 +1,7 @@
 package ie.tudublin;
 
 import daniel.*;
+import c123456.*;
 
 import java.util.ArrayList;
 
@@ -27,10 +28,10 @@ public class MainWindow extends Visual {
         noCursor();
         
         //Adding all our visual to an arrayList
-        ourVisuals.add(new DanielsVisual(this, "Line", 200));
-        ourVisuals.add(new DanielsVisual(this, "Cheese" ,400));
-        ourVisuals.add(new DanielsVisual(this, "2",600));
-
+        ourVisuals.add(new BryansVisual(this, "Line", 200));
+        ourVisuals.add(new BryansVisual(this, "Cheese" ,400));
+        ourVisuals.add(new BryansVisual(this, "2",600));
+        ourVisuals.add(new DanielsVisual(this, "Fireworks"));
 
         startMinim();
         loadAudio("rasputin.mp3");
@@ -78,7 +79,6 @@ public class MainWindow extends Visual {
         if (key == 'n' && intensity < maxIntensity)
             intensity++;
 
-        
     }
 
     public int asciiToInt(char key)
@@ -141,6 +141,16 @@ public class MainWindow extends Visual {
 
     public void draw()
     {
+        try
+        {
+            // Call this if you want to use FFT data
+            calculateFFT(); 
+        }
+        catch(VisualException e)
+        {
+            e.printStackTrace();
+        }
+
         if(currentVisual < ourVisuals.size())
         {       
             if (singleMode) 
@@ -163,6 +173,7 @@ public class MainWindow extends Visual {
         }
         else if(currentVisual == ourVisuals.size())
         {
+            background(defaultColor);
             for(MyVisual v:ourVisuals)
             {
                 v.update();
