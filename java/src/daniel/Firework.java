@@ -18,6 +18,7 @@ public class Firework {
     private boolean exploded = false;
     private int colour = 255;
     private int time = 15;
+    private float angle = PApplet.TWO_PI/16;
 
     public Firework(MainWindow window, float speed, int colour,PVector location)
     {   
@@ -33,28 +34,8 @@ public class Firework {
 
     private void setup()
     {
-        // This is for half the geometry graph
-        for(int i = 0; i < 9; i++)
-        {
-            float x1 = PApplet.map(i,0,8,-100,100);
-            float y1 = 0;
-            if (x1 < 0)
-                y1 = PApplet.map(i,0,4,0,100);
-            else
-                y1 = PApplet.map(i,4,8, 100, 0);
-            addArmOrParticle(x1, y1);
-        }
-        // This is for the other half of the geometry graph
-        for(int i = 1; i < 8; i++)
-        {
-            float x1 = PApplet.map(i,0,8,-100,100);
-            float y1 = 0;
-            if (x1 < 0)
-                y1 = PApplet.map(i,0,4,0,-100);
-            else
-                y1 = PApplet.map(i,4,8, -100, 0);
-
-            addArmOrParticle(x1, y1);
+        for (int i = 0; i < 16; i++) {
+            addArmOrParticle(0, -100, i*angle);
         }
     }
 
@@ -80,16 +61,16 @@ public class Firework {
 
     }
 
-    private void addArmOrParticle(float x, float y)
+    private void addArmOrParticle(float x, float y, float rotation)
     {
         if(particleOrArm)
         {
-            particles.add(new FireworkParticle(window, maxRadius, speed, new PVector(x,y)));
+            particles.add(new FireworkParticle(window, maxRadius, speed, rotation,new PVector(x,y)));
             particleOrArm = !particleOrArm;
         }
         else
         {
-            arms.add(new FireworkArm(window, speed, new PVector(x,y)));
+            arms.add(new FireworkArm(window, speed, rotation,new PVector(x,y)));
             particleOrArm = !particleOrArm;
         }
     }

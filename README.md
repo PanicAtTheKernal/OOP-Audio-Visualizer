@@ -1,8 +1,20 @@
 # Music Visualiser Project
 
-Name:
+Name: Daniel Kondabarov 
+<br>
+Student Number: C20456964
 
-Student Number: 
+Name:
+<br>
+Student Number:
+
+Name:
+<br>
+Student Number:
+
+Name:
+<br>
+Student Number:
 
 ## Instructions
 - Fork this repository and use it a starter project for your assignment

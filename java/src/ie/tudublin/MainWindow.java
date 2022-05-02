@@ -50,28 +50,26 @@ public class MainWindow extends Visual {
             if(newIndex < ourVisuals.size())
             {
                 currentVisual = newIndex;                    
-            }
-
-            if (currentVisual < ourVisuals.size())
-            {
-                if (singleMode)
-                    ourVisuals.get(currentVisual).keyPressed();
                 ourVisuals.get(currentVisual).toggleRender();
             }
+
         }
         
         if (key == '0' && !singleMode)
         {
             currentVisual = ourVisuals.size();
         }
-
+        
         if (key == 'b')
         {
             toggleSingleMode();
             // Set the current visual to 0 to stop the all index bug from triggering
             if(singleMode)
-                currentVisual = 0;
+            currentVisual = 0;
         }
+        
+        if (currentVisual < ourVisuals.size() && singleMode)
+            ourVisuals.get(currentVisual).keyPressed();
 
         if (key == 'v' && intensity > 1)
             intensity--;
