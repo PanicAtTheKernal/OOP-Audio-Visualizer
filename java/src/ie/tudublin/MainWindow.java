@@ -2,6 +2,7 @@ package ie.tudublin;
 
 import daniel.*;
 import c123456.*;
+import orin.*;
 
 import java.util.ArrayList;
 
@@ -25,7 +26,7 @@ public class MainWindow extends Visual {
     public void setup()
     {
         colorMode(HSB);
-        noCursor();
+        //noCursor();
         
         //Adding all our visual to an arrayList
         ourVisuals.add(new BryansVisual(this, "Line", 200));
