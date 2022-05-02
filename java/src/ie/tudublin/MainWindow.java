@@ -2,6 +2,7 @@ package ie.tudublin;
 
 import daniel.*;
 import c123456.*;
+import matt.*;
 
 import java.util.ArrayList;
 
@@ -9,7 +10,7 @@ import processing.core.PApplet;
 
 public class MainWindow extends Visual {
     private ArrayList<MyVisual> ourVisuals = new ArrayList<MyVisual>();
-    private int currentVisual = 0;
+    private int currentVisual = 2;
     private int intensity = 1;
     private int maxIntensity = 10;
     private boolean singleMode = true;
@@ -30,7 +31,7 @@ public class MainWindow extends Visual {
         //Adding all our visual to an arrayList
         ourVisuals.add(new BryansVisual(this, "Line", 200));
         ourVisuals.add(new BryansVisual(this, "Cheese" ,400));
-        ourVisuals.add(new BryansVisual(this, "2",600));
+        ourVisuals.add(new MattsVisual(this, "Epic Circle"));
         ourVisuals.add(new DanielsVisual(this, "Fireworks"));
 
         startMinim();
