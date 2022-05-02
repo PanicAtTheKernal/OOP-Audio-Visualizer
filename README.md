@@ -16,12 +16,7 @@ Name:
 <br>
 Student Number:
 
-## Instructions
-- Fork this repository and use it a starter project for your assignment
-- Create a new package named your student number and put all your code in this package.
-- You should start by creating a subclass of ie.tudublin.Visual
-- There is an example visualiser called MyVisual in the example package
-- Check out the WaveForm and AudioBandsVisual for examples of how to call the Processing functions from other classes that are not subclasses of PApplet
+
 
 # Description of the assignment
 
@@ -35,7 +30,7 @@ Student Number:
 |--------|-------------|
 |Toggle single/multi mode | b |
 | Selecting visuals | 1-9 |
-| Toggle all | 0 |
+| Enable all | 0 |
 | Increase intensity | n |
 | Decrease intensity | v |
 
@@ -107,6 +102,21 @@ When it comes to rendering there is two modes, single mode and multi-mode. Singl
 ```
 There were some changes to Visual with the addition of a beat detector from the minim package. The beat detector requires a class to implementation audioListener to be able to detect beats. Once implemented, the beat detector can detect hats, kicks and snares in the song. 
 
+### Daniel's Fireworks visual:
+The Visual I made was a firework show. Every time the beat detector detects a hat a new firework is created. The firework is assigned a random position on the screen. It’s then given a colour based on the first band taken from the FFT object. It is then added to the array list of fireworks. There is a limit of ten fireworks in the array list. This is to not fill the screen full of fireworks. The reason for the array list instead of an array is because I use the array list as queue for the fireworks. The fireworks in the front of the queue explode and get removed first. When the beat detector detects a kick, a firework explodes. When the firework is starts to explode it triggers a countdown. Only when the countdown is over can that firework be removed from the array list. This countdown exist to allow the firework to play the explosion animation. Without it the firework just get removed before the animation plays. The animation is quick because while the firework is exploding no new fireworks can be added to the screen. Having the firework explode quickly means it can sync better to the song. The intensity implementation here that the fireworks increase in scale. This done by using the scale() from PApplet.
+
+The firework is made up of two components firework arms and firework particles. The firework arms are the lines seen on the fireworks. The firework particles are the circles in-between the firework arms. Each firework is made up of 8 firework arms and firework particles. When creating the firework, there is a for loop between 0 and 16. It alternates between a firework arm and the firework particle. It starts with a firework arm with a starting position of x: 0 and y:-100 and a rotation of 0 radians. The angle is calculated by (2π/16)*index in the for loop.
+```Java
+		float angle = PApplet.TWO_PI/16;
+
+        for (int i = 0; i < 16; i++) {
+            addArmOrParticle(0, -100, i*angle);
+        }
+```
+The first thing done by both the arm and particle is pushMatrix(). This is done to prevent the rotation from affecting any part of the firework. The rotation is done using the rotation value given when it was created. Then popMatrix() after the render is done.  The firework arm is line drawn using liner interpolation. The line is drawn at the 0,0 to the result of the liner interpolation function between the current cords and target cords. When the current cords reach the target cords, it starts to draw the line decreasing towards the target cords. For the particles, they work similar to the firework arms but it increase/decrease the radius instead. The reason that both are classes is because it more easier to have a class with the data it needs encapsulated then to create a function in the firework class and keep track of the rotations and target co-ordinates needed in multiple arrays.
+![FireworkArm](images/FireworkArm.gif)
+![FireworkParticle](images/FireworkPar.gif)
+![Firework](images/Firework.gif)
 # What I am most proud of in the assignment
 ### Daniel:
 
