@@ -13,6 +13,7 @@ public class DanielsVisual extends MyVisual {
     private int noFireworks = 10;
     private int maxSize = 40;
     private float scale = 0.3f; 
+    private float minScale = 0.3f;
 
     private ArrayList<Firework> fireworks = new ArrayList<Firework>();
 
@@ -33,7 +34,7 @@ public class DanielsVisual extends MyVisual {
             fireworks.add(new Firework(window, 0.5f, colour,cords));
         }
         
-        scale = window.getIntensity() * 0.1f;
+        scale = minScale + (window.getIntensity() * 0.1f);
 
         if(window.getBeat().isKick())
         {
