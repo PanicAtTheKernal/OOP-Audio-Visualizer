@@ -41,9 +41,11 @@ Student Number:
 
 - *Toggle all* only work in in multi-mode
 # How it works
+The first thing done to this project was the structure to make it easier to work as team. This lead to the creation of two classes in ie\tudublin package, MainWindow and MyVisual. MainWindow class exist to be the only class that extends the Visual class. Since there should be only one instance of the song playing. This class does the setup and drawing for the program. This is also the controller class for the MyVisual class. This class creates the visuals and controls the visuals using the keyboard. 
 
 
 # What I am most proud of in the assignment
+### Daniel:
 
 # Markdown Tutorial
 
