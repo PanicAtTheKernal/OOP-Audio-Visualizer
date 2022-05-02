@@ -1,5 +1,6 @@
 package example;
 
+import ie.tudublin.MyVisual;
 import processing.core.*;
 
 public class Wave 
