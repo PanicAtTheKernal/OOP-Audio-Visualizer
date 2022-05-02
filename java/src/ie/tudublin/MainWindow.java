@@ -167,7 +167,6 @@ public class MainWindow extends Visual {
                 {
                     if(v.shouldRender())
                     {
-
                         v.update();
                         v.render();
                     }

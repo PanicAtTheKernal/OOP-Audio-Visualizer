@@ -29,7 +29,8 @@ public class DanielsVisual extends MyVisual {
         if(window.getBeat().isHat() && fireworks.size() < noFireworks)
         {
             cords = new PVector(window.random(maxSize, window.width-maxSize), window.random(maxSize, window.height-maxSize));
-            int colour = (int)PApplet.map(window.random(0, bands.length-1), 0, bands.length-1, 0, 255);
+            PApplet.println(window.getFFT().getBand(0));
+            int colour = (int)PApplet.map(window.getFFT().getBand(0), 0f, 30f, 0, 255);
             fireworks.add(new Firework(window, 0.5f, colour,cords));
         }
         

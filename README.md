@@ -42,9 +42,6 @@ Student Number:
 - *Toggle all* only work in in multi-mode
 # How it works
 - Visuals
-- Tab system
-- Rendering
-- Order of rendering
 - My visual
 - Firework
 - Firework arm
@@ -70,6 +67,46 @@ When it comes to selecting a visual is just pressing the key between 1 and 9 and
 
         }
 ```
+When it comes to rendering there is two modes, single mode and multi-mode. Single mode allows for a single visual to be displayed at one time. This comes with some benefits such as custom backgrounds and controls. This gives more creative freedom to create better visuals. Multi-mode allows for each visual to be rendered at the same time and then toggled on/off. In multi-mode custom backgrounds are disabled because they would overwrite over the other visuals causing to disappear. Controls are disabled as just in case the controls end up in causing some rendering bug to appear. Below is the code how both mutli-mode and single mode is rendered. 
+```Java
+        // This checks if the selected visual is within the ourVisuals arrayList
+        if(currentVisual < ourVisuals.size())
+        {       
+            if (singleMode) 
+            {
+                // This just renders a single visual
+                ourVisuals.get(currentVisual).update();
+                ourVisuals.get(currentVisual).render();
+            }
+            else 
+            {
+                // It renders the background first then render all the currently active visuals
+                background(defaultColor);
+                for(MyVisual v:ourVisuals)
+                {
+                    if(v.shouldRender())
+                    {
+                        v.update();
+                        v.render();
+                    }
+                }
+            }
+        }
+        // This renders the all the visuals in multi-mode
+        else if(currentVisual == ourVisuals.size())
+        {
+            background(defaultColor);
+            for(MyVisual v:ourVisuals)
+            {
+                // Set true so that each visual stays rendering after 0 is not selected
+                if(!v.shouldRender()) v.toggleRender();
+                v.update();
+                v.render();
+            }
+        }
+```
+There were some changes to Visual with the addition of a beat detector from the minim package. The beat detector requires a class to implementation audioListener to be able to detect beats. Once implemented, the beat detector can detect hats, kicks and snares in the song. 
+
 # What I am most proud of in the assignment
 ### Daniel:
 
