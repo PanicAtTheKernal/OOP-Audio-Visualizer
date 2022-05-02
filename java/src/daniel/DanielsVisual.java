@@ -9,7 +9,6 @@ import processing.core.PVector;
 
 // My Visual is fireworks show that synchronization with the beat of the song
 public class DanielsVisual extends MyVisual {
-    private float color = window.random(0,255);
     private int noFireworks = 10;
     private int maxSize = 40;
     private float scale = 0.3f; 
