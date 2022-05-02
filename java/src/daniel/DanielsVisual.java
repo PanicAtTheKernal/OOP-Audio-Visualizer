@@ -13,9 +13,7 @@ public class DanielsVisual extends MyVisual {
     private int maxSize = 40;
     private float scale = 0.3f; 
     private float minScale = 0.3f;
-
     private ArrayList<Firework> fireworks = new ArrayList<Firework>();
-
     private PVector cords;
 
     public DanielsVisual(MainWindow window, String name) {
@@ -24,12 +22,10 @@ public class DanielsVisual extends MyVisual {
 
     @Override
     public void update() {
-        float[] bands = window.getSmoothedBands();
-
         if(window.getBeat().isHat() && fireworks.size() < noFireworks)
         {
             cords = new PVector(window.random(maxSize, window.width-maxSize), window.random(maxSize, window.height-maxSize));
-            int colour = (int)PApplet.map(window.random(0, bands.length-1), 0, bands.length-1, 0, 255);
+            int colour = (int)PApplet.map(window.getFFT().getBand(0), 0f, 30f, 0, 255);
             fireworks.add(new Firework(window, 0.5f, colour,cords));
         }
         
@@ -45,7 +41,6 @@ public class DanielsVisual extends MyVisual {
     public void render() {
         if(isSingleMode()) window.background(0); 
 
-
         for(Firework f: fireworks)
         {
             window.pushMatrix();
@@ -54,14 +49,10 @@ public class DanielsVisual extends MyVisual {
             f.render();
             window.popMatrix();
         }
-
-
     }
 
     @Override
-    public void keyPressed() {
-        // PApplet.println(window.key);
-    }
+    public void keyPressed() {}
     
     public void explodeFirework()
     {
