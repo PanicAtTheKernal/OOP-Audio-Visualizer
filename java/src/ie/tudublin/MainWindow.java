@@ -55,6 +55,7 @@ public class MainWindow extends Visual {
 
         }
         
+        // This toggles all the visuals if the current mode is not single mode
         if (key == '0' && !singleMode)
         {
             currentVisual = ourVisuals.size();
@@ -149,31 +150,38 @@ public class MainWindow extends Visual {
             e.printStackTrace();
         }
 
+        // This checks if the selected visual is within the ourVisuals arrayList
         if(currentVisual < ourVisuals.size())
         {       
             if (singleMode) 
             {
+                // This just renders a single visual
                 ourVisuals.get(currentVisual).update();
                 ourVisuals.get(currentVisual).render();
             }
             else 
             {
+                // It renders the background first then render all the currently active visuals
                 background(defaultColor);
                 for(MyVisual v:ourVisuals)
                 {
                     if(v.shouldRender())
                     {
+
                         v.update();
                         v.render();
                     }
                 }
             }
         }
+        // This renders the all the visuals in multi-mode
         else if(currentVisual == ourVisuals.size())
         {
             background(defaultColor);
             for(MyVisual v:ourVisuals)
             {
+                // Set true so that each visual stays rendering after 0 is not selected
+                if(!v.shouldRender()) v.toggleRender();
                 v.update();
                 v.render();
             }

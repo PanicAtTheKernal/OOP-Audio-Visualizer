@@ -42,8 +42,6 @@ Student Number:
 - *Toggle all* only work in in multi-mode
 # How it works
 - Visuals
-- Class structure
-- Controls
 - Tab system
 - Rendering
 - Order of rendering
@@ -56,7 +54,22 @@ The first thing done to this project was the structure to make it easier to work
 
 The MyVisual class is an abstract class that each of our visual inherit. MyVisual exists to make it very easy to add a new visual to the scene is just as simple is adding that visual to the ourVisual array list. The MainWindow class will do the rest. We just need to implment the abstract function in our class. The update function is for updating variables before the render function is called. The render function is used to draw the visual. Each MyVisual object needs a reference to MainWindow to access the Visual function and the PApplet functions. It also needs a name with is displayed at the bottom of the screen. There is also the booleans toggleRender (Which is used to see if MainWindow should render the visual in multi-mode) and singleMode (Which is used to see if what mode MainWindow is in).
 
+When it comes to selecting a visual is just pressing the key between 1 and 9 and the corresponding visual will appear. I.E. When you press 1 that key press is a ASCII character. Then that character is subtracted from the ASCII character 0. This will return 1 and that one is then subtracted by 1 since arrays start at 0. In the end pressing 1 will toggle/select element 0 in the ourVisual array list. Toggling between single and multi-mode is b. And increase and decreasing intensity is n and v. What intensity does, depends on the implantation of it in each visual.
 
+```Java
+        if (key > '0' && key <= '9')
+        {
+            // This is done so instead of pressing 0 and 1 you can press 1 and 2 instead 
+            char keyOffest = (char)((int)key - 1);
+            int newIndex = asciiToInt(keyOffest);
+            if(newIndex < ourVisuals.size())
+            {
+                currentVisual = newIndex;                    
+                ourVisuals.get(currentVisual).toggleRender();
+            }
+
+        }
+```
 # What I am most proud of in the assignment
 ### Daniel:
 
