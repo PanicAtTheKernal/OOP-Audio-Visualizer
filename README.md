@@ -26,8 +26,22 @@ Student Number:
 # Description of the assignment
 
 # Instructions
+### Setup:
+1.
+2.
 
+### Controls:
+| Action | Key Binding |
+|--------|-------------|
+|Toggle single/multi mode | b |
+| Selecting visuals | 1-9 |
+| Toggle all | 0 |
+| Increase intensity | n |
+| Decrease intensity | v |
+
+- *Toggle all* only work in in multi-mode
 # How it works
+
 
 # What I am most proud of in the assignment
 
