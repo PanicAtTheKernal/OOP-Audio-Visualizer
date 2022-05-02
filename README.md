@@ -20,10 +20,14 @@ Student Number:
 
 # Description of the assignment
 
+[Youtube link of the project]()
 # Instructions
 ### Setup:
-1.
-2.
+1. Clone the project onto your computer
+2. Download the [song](https://cdn.discordapp.com/attachments/941703796688572458/969267593078771712/rasputin.mp3)
+3. Place the song in the Java/data folder
+4. Open Vscode and start the project
+5. For the controls look below
 
 ### Controls:
 | Action | Key Binding |
@@ -35,13 +39,9 @@ Student Number:
 | Decrease intensity | v |
 
 - *Toggle all* only work in in multi-mode
+- *single mode* will display one visual at a time
+- *multi mode* you can toggle visuals on/off
 # How it works
-- Visuals
-- My visual
-- Firework
-- Firework arm
-- Firework particle
-
 The first thing done to this project was the structure to make it easier to work as team. This lead to the creation of two classes in ie\tudublin package, MainWindow and MyVisual. MainWindow class exist to be the only class that extends the Visual class. Since there should be only one instance of the song playing. This class does the setup and drawing for the scene. This is also the controller class for the MyVisual class. This class creates the visuals and controls the visuals using the keyboard. 
 
 The MyVisual class is an abstract class that each of our visual inherit. MyVisual exists to make it very easy to add a new visual to the scene is just as simple is adding that visual to the ourVisual array list. The MainWindow class will do the rest. We just need to implment the abstract function in our class. The update function is for updating variables before the render function is called. The render function is used to draw the visual. Each MyVisual object needs a reference to MainWindow to access the Visual function and the PApplet functions. It also needs a name with is displayed at the bottom of the screen. There is also the booleans toggleRender (Which is used to see if MainWindow should render the visual in multi-mode) and singleMode (Which is used to see if what mode MainWindow is in).
@@ -118,7 +118,7 @@ The first thing done by both the arm and particle is pushMatrix(). This is done 
 ![FireworkParticle](images/FireworkPar.gif)
 ![Firework](images/Firework.gif)
 # What I am most proud of in the assignment
-### Daniel:
+
 
 # Markdown Tutorial
 
