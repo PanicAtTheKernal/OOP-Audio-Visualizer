@@ -33,6 +33,7 @@ public class MainWindow extends Visual {
         ourVisuals.add(new BryansVisual(this, "Cheese" ,400));
         ourVisuals.add(new BryansVisual(this, "2",600));
         ourVisuals.add(new DanielsVisual(this, "Fireworks"));
+        ourVisuals.add(new OrinsVisuals(this, "BouncingObjects"));
 
         startMinim();
         loadAudio("rasputin.mp3");
@@ -187,6 +188,10 @@ public class MainWindow extends Visual {
 
     public int getIntensity() {
         return intensity;
+    }
+
+    public void mousePressed(){
+        OrinsVisuals.mousePressed(mouseX, mouseY);
     }
 
 }
