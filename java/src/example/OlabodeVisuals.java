@@ -71,7 +71,7 @@ public class OlabodeVisuals extends MyVisual
                 float t = 0; 
                 float frequency = 0;
                 float y = 0; //Float which is used to calculate the sine wave
-                float r = 6.5f; //radius of circle
+                float r = 10f; //radius of circle
 
                 //Changes the color of the wave
                 float wave_color = PApplet.map(i, 0, mv.getAudioBuffer().size(),  0, 255);
