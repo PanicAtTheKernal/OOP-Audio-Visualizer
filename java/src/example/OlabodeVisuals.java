@@ -1,6 +1,5 @@
-package Olabode;
+package example;
 
-import ie.tudublin.MyVisual;
 import processing.core.PApplet;
 
 public class OlabodeVisuals extends MyVisual
@@ -12,6 +11,8 @@ public class OlabodeVisuals extends MyVisual
     float sum;
     float wave_amp;
 
+
+    
     float[] lerpedBuffer;
 
     float random_var_x = random(0, 3);
@@ -63,6 +64,40 @@ public class OlabodeVisuals extends MyVisual
         }
         //Option 2, 3 Sinusoidal waveforms
         else if(random_var == 1)
+        {
+            for(int i = 0; i < mv.getAudioBuffer().size(); i++)
+            {
+                float amplitude = mv.getSmoothedAmplitude(); //amplitude of wave
+                float t = 0; 
+                float frequency = 0;
+                float y = 0; //Float which is used to calculate the sine wave
+                float r = 6.5f; //radius of circle
+
+                //Changes the color of the wave
+                float wave_color = PApplet.map(i, 0, mv.getAudioBuffer().size(),  0, 255);
+
+                //Sinusodial Waveform
+                //Need the formula Y = amplitude + sin(2 PI * t / frequency)
+                t = i; //Make ith cycle
+                frequency = mv.getFFT().getFreq(i); //calculate the frequency of position i
+                
+                y = amplitude + sin(TWO_PI * t / frequency); //Formula for sine wave 
+
+
+                //Changes the color of the wave
+                mv.stroke(wave_color, 255, 255);
+
+                
+                mv.ellipse((i * r), (wave_height + (y * r)) + 50, r, r); //Drawing the circular wave in the form of a sine wave
+                mv.ellipse(i * r, wave_height + (y * r), r, r); //Drawing the circular wave in the form of a sine wave
+                mv.ellipse((i * r), (wave_height + (y * r)) - 50, r, r); //Drawing the circular wave in the form of a sine wave
+                
+
+                //mv.line((i * r), (wave_height + (y * r) - 50), (i * r), (wave_height+ (y * r) + 50));
+            }
+        }
+        //Option 2, 3 Sinusoidal waveforms
+        else if(random_var == 2)
         {
             for(int i = 0; i < mv.getAudioBuffer().size(); i++)
             {

@@ -2,6 +2,7 @@ package ie.tudublin;
 
 import processing.core.PApplet;
 import ddf.minim.*;
+import ddf.minim.analysis.BeatDetect;
 import ddf.minim.analysis.FFT;
 
 public abstract class Visual extends PApplet
@@ -18,10 +19,35 @@ public abstract class Visual extends PApplet
 	private AudioBuffer ab;
 	private FFT fft;
 
+	private BeatDetect beat;
+	private BeatListener beatL;
+
 	private float amplitude  = 0;
 	private float smothedAmplitude = 0;
 
+	class BeatListener implements AudioListener
+	{
+		private BeatDetect beat;
+		private AudioPlayer source;
 	
+		BeatListener(BeatDetect beat, AudioPlayer source)
+		{
+			this.source = source;
+			this.source.addListener(this);
+			this.beat = beat;
+		}
+		
+		public void samples(float[] samps)
+		{
+			beat.detect(source.mix);
+		}
+		
+		public void samples(float[] sampsL, float[] sampsR)
+		{
+			beat.detect(source.mix);
+		}
+	}
+
 	
 	public void startMinim() 
 	{
@@ -31,6 +57,13 @@ public abstract class Visual extends PApplet
 
 		bands = new float[(int) log2(frameSize)];
   		smoothedBands = new float[bands.length];
+
+		beat = new BeatDetect(frameSize, sampleRate);
+		beat.setSensitivity(10);
+  
+  
+		bands = new float[(int) log2(frameSize)];
+		smoothedBands = new float[bands.length];
 
 	}
 
@@ -89,6 +122,8 @@ public abstract class Visual extends PApplet
 	{
 		ap = minim.loadFile(filename, frameSize);
 		ab = ap.mix;
+
+		beatL = new BeatListener(beat, ap);
 	}
 
 	public int getFrameSize() {
@@ -142,5 +177,9 @@ public abstract class Visual extends PApplet
 
 	public FFT getFFT() {
 		return fft;
+	}
+
+	public BeatDetect getBeat(){
+		return beat;
 	}
 }

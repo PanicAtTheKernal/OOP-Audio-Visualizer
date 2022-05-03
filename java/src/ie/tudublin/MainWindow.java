@@ -3,6 +3,8 @@ package ie.tudublin;
 import Olabode.*;
 import c123456.*;
 
+import daniel.*;
+
 import java.util.ArrayList;
 
 import processing.core.PApplet;
@@ -30,7 +32,7 @@ public class MainWindow extends Visual {
         //Adding all our visual to an arrayList
         ourVisuals.add(new BryansVisual(this, "Line", 200));
         ourVisuals.add(new BryansVisual(this, "Cheese" ,400));
-        ourVisuals.add(new BryansVisual(this, "2",600));
+        ourVisuals.add(new OlabodeVisual(this, "Waveforms"));
         ourVisuals.add(new DanielsVisual(this, "Fireworks"));
 
         startMinim();
