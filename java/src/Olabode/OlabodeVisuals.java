@@ -14,7 +14,7 @@ public class OlabodeVisuals extends MyVisual
 
     float[] lerpedBuffer;
 
-    float random_var_x = random(0, 2);
+    float random_var_x = random(0, 3);
 
     int random_var = (int) random_var_x;
 
@@ -58,11 +58,11 @@ public class OlabodeVisuals extends MyVisual
                 mv.stroke(wave_color, 255, 255);
     
     
-                mv.line(i, wave_height - f, i, wave_height + f);
+                mv.line(i, wave_height + f, i, wave_height - f);
             }
         }
         //Option 2, 3 Sinusoidal waveforms
-        else
+        else if(random_var == 1)
         {
             for(int i = 0; i < mv.getAudioBuffer().size(); i++)
             {
@@ -70,7 +70,7 @@ public class OlabodeVisuals extends MyVisual
                 float t = 0; 
                 float frequency = 0;
                 float y = 0; //Float which is used to calculate the sine wave
-                float r = 15; //radius of circle
+                float r = 6.5f; //radius of circle
 
                 //Changes the color of the wave
                 float wave_color = PApplet.map(i, 0, mv.getAudioBuffer().size(),  0, 255);
@@ -85,12 +85,20 @@ public class OlabodeVisuals extends MyVisual
 
                 //Changes the color of the wave
                 mv.stroke(wave_color, 255, 255);
+
+                
                 mv.ellipse((i * r), (wave_height + (y * r)) + 50, r, r); //Drawing the circular wave in the form of a sine wave
                 mv.ellipse(i * r, wave_height + (y * r), r, r); //Drawing the circular wave in the form of a sine wave
                 mv.ellipse((i * r), (wave_height + (y * r)) - 50, r, r); //Drawing the circular wave in the form of a sine wave
-
                 
+
+                //mv.line((i * r), (wave_height + (y * r) - 50), (i * r), (wave_height+ (y * r) + 50));
             }
+        }
+        else
+        {
+            random_var_x = random(0, 3);
+            random_var = (int) random_var_x;
         }
     }
 }
