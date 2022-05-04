@@ -2,6 +2,7 @@ package ie.tudublin;
 
 import daniel.*;
 import c123456.*;
+import Olabode.*;
 
 import java.util.ArrayList;
 
@@ -30,7 +31,7 @@ public class MainWindow extends Visual {
         //Adding all our visual to an arrayList
         ourVisuals.add(new BryansVisual(this, "Line", 200));
         ourVisuals.add(new BryansVisual(this, "Cheese" ,400));
-        ourVisuals.add(new BryansVisual(this, "2",600));
+        ourVisuals.add(new OlabodeVisual(this, "2"));
         ourVisuals.add(new DanielsVisual(this, "Fireworks"));
 
         startMinim();

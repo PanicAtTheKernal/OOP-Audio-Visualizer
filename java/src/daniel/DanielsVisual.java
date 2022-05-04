@@ -41,6 +41,8 @@ public class DanielsVisual extends MyVisual {
     public void render() {
         if(isSingleMode()) window.background(0); 
 
+        window.strokeWeight(4);
+
         for(Firework f: fireworks)
         {
             window.pushMatrix();
