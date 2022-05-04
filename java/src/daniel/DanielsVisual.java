@@ -30,7 +30,6 @@ public class DanielsVisual extends MyVisual {
         }
         
         scale = minScale + (window.getIntensity() * 0.1f);
-
         if(window.getBeat().isKick())
         {
             explodeFirework();
