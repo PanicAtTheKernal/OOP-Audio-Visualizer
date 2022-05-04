@@ -3,6 +3,7 @@ package ie.tudublin;
 import processing.core.PApplet;
 import ddf.minim.*;
 import ddf.minim.analysis.*;
+import ddf.minim.analysis.BeatDetect;
 import ddf.minim.analysis.FFT;
 
 public abstract class Visual extends PApplet
@@ -60,6 +61,13 @@ public abstract class Visual extends PApplet
 
 		bands = new float[(int) log2(frameSize)];
   		smoothedBands = new float[bands.length];
+
+		beat = new BeatDetect(frameSize, sampleRate);
+		beat.setSensitivity(10);
+  
+  
+		bands = new float[(int) log2(frameSize)];
+		smoothedBands = new float[bands.length];
 
 	}
 

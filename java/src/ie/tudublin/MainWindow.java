@@ -1,7 +1,6 @@
 package ie.tudublin;
 
 import daniel.*;
-import c123456.*;
 import Olabode.*;
 import matt.*;
 import orin.*;
@@ -12,7 +11,7 @@ import processing.core.PApplet;
 
 public class MainWindow extends Visual {
     private ArrayList<MyVisual> ourVisuals = new ArrayList<MyVisual>();
-    private int currentVisual = 2;
+    private int currentVisual = 0;
     private int intensity = 1;
     private int maxIntensity = 10;
     private boolean singleMode = true;
@@ -28,13 +27,13 @@ public class MainWindow extends Visual {
     public void setup()
     {
         colorMode(HSB);
-        //noCursor();
         
         //Adding all our visual to an arrayList
-        ourVisuals.add(new OlabodeVisual(this, "Sinusodial"));
+        ourVisuals.add(new OlabodeVisual(this, "Waveforms"));
         ourVisuals.add(new MattsVisual(this, "Epic Circle"));
         ourVisuals.add(new DanielsVisual(this, "Fireworks"));
         ourVisuals.add(new OrinsVisuals(this, "BouncingObjects"));
+        noCursor();
 
         startMinim();
         loadAudio("rasputin.mp3");

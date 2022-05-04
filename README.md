@@ -4,9 +4,9 @@ Name: Daniel Kondabarov
 <br>
 Student Number: C20456964
 
-Name:
+Name:  Olabode Balinga
 <br>
-Student Number:
+Student Number: C20478706
 
 Name:
 <br>
@@ -15,7 +15,6 @@ Student Number:
 Name:
 <br>
 Student Number:
-
 
 
 # Description of the assignment

@@ -4,7 +4,6 @@ package orin;
 import java.lang.annotation.Target;
 import java.util.ArrayList;
 
-import example.MyVisual;
 import ie.tudublin.MainWindow;
 import jogamp.newt.driver.awt.WindowDriver;
 import processing.core.PApplet;
