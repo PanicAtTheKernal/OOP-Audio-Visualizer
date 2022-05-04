@@ -40,7 +40,7 @@ public class Ring {
         window.colorMode(PApplet.HSB);
         window.stroke(colour,255,255);
         
-        for(i = 0; i < 360; i += 0.1)
+        for(i = 0; i < 360; i += 0.5)
         {
                 angle = i;
                 x1 = (float) (radius * Math.cos(angle * PApplet.PI / 180));
