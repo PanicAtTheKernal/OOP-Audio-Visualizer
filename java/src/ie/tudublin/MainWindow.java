@@ -4,6 +4,7 @@ import daniel.*;
 import c123456.*;
 import Olabode.*;
 import matt.*;
+import orin.*;
 
 import java.util.ArrayList;
 
@@ -27,13 +28,13 @@ public class MainWindow extends Visual {
     public void setup()
     {
         colorMode(HSB);
-        noCursor();
+        //noCursor();
         
         //Adding all our visual to an arrayList
-        ourVisuals.add(new BryansVisual(this, "Line", 200));
         ourVisuals.add(new OlabodeVisual(this, "Sinusodial"));
         ourVisuals.add(new MattsVisual(this, "Epic Circle"));
         ourVisuals.add(new DanielsVisual(this, "Fireworks"));
+        ourVisuals.add(new OrinsVisuals(this, "BouncingObjects"));
 
         startMinim();
         loadAudio("rasputin.mp3");
@@ -193,6 +194,10 @@ public class MainWindow extends Visual {
 
     public int getIntensity() {
         return intensity;
+    }
+
+    public void mousePressed(){
+        OrinsVisuals.mousePressed(mouseX, mouseY);
     }
 
 }
