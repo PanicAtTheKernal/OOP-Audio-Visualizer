@@ -10,17 +10,18 @@ public class Ring {
     private MainWindow window;
     private float speed;
     private int colour;
-    float radius;
+    float radius, width;
     float cy;
-    float i, angle, x1, y1,x2,y2;
+    float i, angle, x1,y1,x2,y2;
     boolean done;
-    public Ring(MainWindow window, float speed, int colour)
+    public Ring(MainWindow window, float speed, int colour, float radius_)
     {   
         this.window = window;
         this.speed = speed;
         this.colour = colour;
         done = true;
-        radius = 30;
+        radius = radius_;
+        width = PApplet.map(radius, 0, 400, 1.01f, 1.5f);
         cy = 400f;
         
     }
@@ -28,10 +29,9 @@ public class Ring {
     {
         radius += speed;
         this.render();
-        if(radius>600)
+        if(radius>700)
         {
             done = true;
-            radius = 30;
         }
 
     }
@@ -45,8 +45,8 @@ public class Ring {
                 angle = i;
                 x1 = (float) (radius * Math.cos(angle * PApplet.PI / 180));
                 y1 = (float) (radius * Math.sin(angle * PApplet.PI / 180));
-                x2 = (float) (radius*1.5 * Math.cos(angle * PApplet.PI / 180));
-                y2 = (float) (radius*1.5 * Math.sin(angle * PApplet.PI / 180));
+                x2 = (float) (radius*width * Math.cos(angle * PApplet.PI / 180));
+                y2 = (float) (radius*width * Math.sin(angle * PApplet.PI / 180));
                 window.line(x1+cy,y1+cy,x2+cy,y2+cy);
         }
     }
