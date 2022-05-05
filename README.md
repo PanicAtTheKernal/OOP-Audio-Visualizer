@@ -4,13 +4,13 @@ Name: Daniel Kondabarov
 <br>
 Student Number: C20456964
 
-Name:  Olabode Balinga
+Name: Olabode Balinga
 <br>
 Student Number: C20478706
 
-Name:
+Name: Mateusz Zablocki
 <br>
-Student Number:
+Student Number: C20471062
 
 Name:
 <br>
@@ -116,6 +116,52 @@ The first thing done by both the arm and particle is pushMatrix(). This is done 
 ![FireworkArm](images/FireworkArm.gif)
 ![FireworkParticle](images/FireworkPar.gif)
 ![Firework](images/Firework.gif)
+
+### Mateusz’s Rings Visual
+The visual I made is a ball at the centre of the screen. Its size is determined by the intensity of the song. The colour cycles through the colour wheel at a constant rate. Whenever a kick is detected the ball shoots off a ring expanding off screen. The rings width is based on the current size of the ball, its colour is based on the current colour of the ball and its speed is based on the intensity setting of the program. The code responsible for detecting the kick counts every kick and only shoots the ring after a certain amount of kicks. This is due to the isKick function detecting the kick each frame and therefore gives a positive value more than once each kick in the song. The amount of kicks needed to shoot a ring is based off the intensity of the program. The max is 4 and the min is 2. 
+```Java
+if(window.getBeat().isKick())
+        {
+            kickamt+=1;
+            if(kickamt>beatFreq)
+            {
+                rings.add(new Ring(window, beatSpeed, startcolour, startR));
+                for(Ring r: rings)
+                {
+                    r.done = false;
+                }
+                kickamt=0;
+            }
+        }
+```
+The ring being shot is not really a ring and is instead many lines from a smaller circles circumference to a bigger ones. This is done in order to get the ring to be a bit see-through as well as the visual being more interesting and more fitting to the audio wave theme. The way this is done is by using an equation of a circle inside a for loop to calculate every point on the circle, the i incrementation determines the gap between the lines. At i+=0.1 the rings would be entirely connected. The width variable is a map function which maps the radius of the circle when the ring is created to the range of 1.01-1.4 this is to scale the rings size. 
+```Java
+for(i = 0; i < 360; i += 0.5)
+        {
+           angle = i;
+           x1 = (float) (radius * Math.cos(angle * PApplet.PI / 180));
+           y1 = (float) (radius * Math.sin(angle * PApplet.PI / 180));
+           x2 = (float) (radius*width * Math.cos(angle * PApplet.PI / 180));
+           y2 = (float) (radius*width * Math.sin(angle * PApplet.PI / 180));
+           window.line(x1+cy,y1+cy,x2+cy,y2+cy);
+        }
+```
+When a ring is created the bool Done is changed to false. This is set to true within the ring when it detects the radius to be over a certain number that would make the ring be off screen. Each frame within the mattsVisual file, a for loop checks every object in the rings array and if Done is true it will set the object to be null and remove it from the arraylist, if its false it will continue the rings movement. 
+```Java
+for(Ring r: rings)
+        { 
+            if(r.done == false)
+            {
+                r.shootRing();  
+            } 
+            else
+            {
+                r = null;
+                rings.remove(r); 
+            }
+        }
+
+```
 # What I am most proud of in the assignment
 
 
