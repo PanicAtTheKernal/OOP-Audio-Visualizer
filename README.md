@@ -18,12 +18,17 @@ Student Number:
 
 
 # Description of the assignment
+Our project is a combination of 4 different visuals all synced up to Boney M’s Rasputin. We chose this energetic song as we believed it would be a great to showcase our visuals. Each visual is unique and each one brings something different to the screen. The first one being a sinusoidal wave that responds to the frequency and amplitude of the song. A ring visual based on the intensity from the song. Creating stunning rings that shoot from the centre of the screen. A bouncing ball visual that will create balls that move around to the beat of the song and bounce of the wall. The final visual is a firework show that triggers based on the beat on the song and colour based on the frequency of the song. 
 
-[Youtube link of the project]()
+Each of these visual can be controlled by the user. If you want to select a single visual you like, then just press a number on your keyboard. You want to see more than one visual at a time you can enter multi-mode. Multi-mode allow the user to toggle a visual on and off. With the caveat being that custom backgrounds and keyboard control schemes are disabled. Except for mouse controls. You can also control the variable called intensity which has different effects based on each visuals implementation. 
+
+Below is the YouTube video is a demo of the project.
+
+[Youtube link of the project](https://www.youtube.com/watch?v=v8bvBTQdCEk)
 # Instructions
 ### Setup:
 1. Clone the project onto your computer
-2. Download the [song](https://cdn.discordapp.com/attachments/941703796688572458/969267593078771712/rasputin.mp3)
+2. Download the [song by clicking this link](https://cdn.discordapp.com/attachments/941703796688572458/969267593078771712/rasputin.mp3)
 3. Place the song in the Java/data folder
 4. Open Vscode and start the project
 5. For the controls look below
