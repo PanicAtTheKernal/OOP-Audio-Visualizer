@@ -162,6 +162,75 @@ for(Ring r: rings)
         }
 
 ```
+### Olabode's Sinusodial Visual
+This is an audio visualizer constructed using processing. It involves using audio file from the computer to visualize the data from the audio file on to the screen in the form of a neat sine wave. The higher the amplitude gets, the bigger the wave becomes, and a higher frequency causes the period of the wave to shrink. While, with a lower amplitude and frequency, the opposite effects occur.
+![OlabVisualImage](images/olabVisualmg.png)
+```Java
+public void render()
+{
+    if(isSingleMode())
+    {
+        window.background(0);
+    }
+    
+    Sinusodial();
+}
+```
+The render function job is when at single mode, it would render the sinusoidal function which is the function that creates the wave.
+```Java
+public void Sinusodial()
+{
+      for(int i = 0; i < window.getAudioBuffer().size(); i++)
+      {    
+
+           wave_amp = window.getAudioBuffer().get(i);
+
+           frequency= window.getFFT().getBand(i) ;
+           float period = PConstants.TWO_PI * i;
+           y = wave_amp + PApplet.sin(period / frequency); 
+```
+The sine wave works by gathering the data stored within processing's audio Buffer and uses them to calculate the amplitude and processing's FFT to collect the frequency data
+<br><br>
+This is all used to create a sine wave in the form y = amp + sin(2πt / f). By doing this a wave formed from ellipses are created. Where amp refers to the amplitude of the wave, t is the number of cycles and f is the frequency. The amplitude is represented by wave_amp, t is represented by i and frequency is represented by f. 
+```Java
+window.strokeWeight(0.9f * window.getIntensity());
+
+window.stroke(wave_color, 255, 255);
+
+total_height = window.height - ((wave_height + y)  + (wave_height + y) * 
+
+(window.getAudioBuffer().get(i)));        
+           
+ window.ellipse((i * r), total_height, r * scale, r * scale);
+```
+Through this, the wave of ellipses is created based on the total height which is formed by the wave_height(half the height of the screen) added stacked onto by the sine wave calculated before and then multiplied by the position of i in the audio buffer( Also the amplitude of the wave). The x position of the ellipse is calculated from i in the for loop multiplied by r which is the radius of the ellipse. The radius, r can increase or decreased depending on the intensity of the program. The stroke weight and wave_color all change depending on the intensity of the program as well.
+<br><br>
+However unfortunately they are not all connected properly, so the function makes a line from the previous ellipse to the current ellipse, thus giving it its waveform. Before that it needs to make sure that the current position of i is not 0 due to it not being able to get the previous value, and also it needs to calculate the previous height, and previous y. Thus, it needs to gather the previous frequency and amplitude. Once those conditions are met, the line is successfully drawn.
+```Java
+if(i > 1) 
+{
+    prev_total_height = window.height - ((wave_height + prev_y)  + (wave_height + prev_y) * (window.getAudioBuffer().get(i - 1)));
+window.line(((i - 1) * r), prev_total_height, (i * r),  total_height);
+}
+```
+
+```Java
+if(i > 1)
+            {
+                prev_wave_amp = wave_amp = window.getAudioBuffer().get(i-1);
+                prev_freq = window.getFFT().getBand(i-1);
+                float prev_period = PConstants.TWO_PI * (i - 1);
+                prev_y = prev_wave_amp + PApplea
+```
+The Update function calculates the scale of the intensity to be used in the program. It is calculated from the minimum Scale of 0.3 and multiplied onto the Intensity of the MainWIndow. Like mentioned earlier, the color of the wave is amplified by the scale too in this function.
+```Java
+   @Override
+   public void update() {
+       //Changes the color of the wave based on the intensity
+       scale = minScale + (window.getIntensity() * 0.02f);
+       wave_color = scale * 100;
+   }
+```
 # What I am most proud of in the assignment
 
 
