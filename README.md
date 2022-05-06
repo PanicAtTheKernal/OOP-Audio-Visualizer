@@ -236,6 +236,43 @@ The Update function calculates the scale of the intensity to be used in the prog
        wave_color = scale * 100;
    }
 ```
+### Orin’s Bouncing Objects Visual
+The visual I made are balls that fly across the screen and react in multiple ways to the song playing. The number of balls generated is determined by the intensity level set by the user, it is a flat rate of 4 and it adds another ball for each level of intensity. When a ball is generated, it is spawned with a random colour and radius set between 20-32 pixels. It is set off on a random direction at a random speed between 2 and 8. All this ensures each ball is random and unique.
+
+When a hat is detected all the balls increase in size, and when a kick is detected they all decrease in size (max and min radiuses are set). However, the main visual effect comes from the balls reacting to an “explosion” at a random location on the screen each time a snare is hit. The main issue with using getBeat().isSnare() is when a snare is detected the getBeat returns isSnare every frame for the duration of the snare which can result in 10+ calls during the sound of 1 snare, to overcome this problem I added a timer that only allowed an explosion to be called 0.25 seconds after the last one 
+
+```Java
+  boolean explode = false;
+  x = window.random(100,window.width - 100);
+  y = window.random(100,window.height - 100);
+  if(window.getBeat().isSnare()){
+  if((window.millis() - lastExplosion)>250 && explode == false){
+      explode = true;
+      lastExplosion = window.millis();
+   }
+ }
+```
+The explosions works by generating a vector from the origin point of the explosion to each current balls location, it gets the magnitude of this vector, normalises it then multiplies it by the balls set speed (to return the ball to its original speed, now just changed direction) then it increases the speed again by multiplying by 4, and decelerating it straight for a nice effect like this
+```Java
+        fromExplosionCenterVect.normalize();
+        fromExplosionCenterVect.mult(speed);
+        fromExplosionCenterVect.mult(4);
+
+        velocity = fromExplosionCenterVect;
+
+
+	  if(velocity.mag() > minimumSpeed){
+            float newMag = velocity.mag() - minimumSpeed/7;
+            velocity.setMag(newMag);
+        }
+
+```
+![oringif](images/orinsgif.gif)
+Having the balls bounce off the walls was very simple, I just checked every frame if either the x or y locations was bigger or smaller than the screen size, and if it was reverse the x or y direction.
+
+All this together adds for a really fun unique looking visual.
+
+Bonus, wherever you click also generates an explosion!
 # What I am most proud of in the assignment
 
 
