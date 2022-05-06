@@ -12,9 +12,9 @@ Name: Mateusz Zablocki
 <br>
 Student Number: C20471062
 
-Name:
+Name: Orin McDonogh
 <br>
-Student Number:
+Student Number: C20307673
 
 
 # Description of the assignment
